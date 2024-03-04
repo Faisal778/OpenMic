@@ -1,7 +1,8 @@
 console.log('script.js connected')
 
 const cardContainer = document.getElementById('card-container')
-
+const titleContainer = document.getElementById('title-div')
+// Show all posts in let's discuss section
 const fetchAllPosts = () => {
     const url = 'https://openapi.programming-hero.com/api/retro-forum/posts';
     fetch(url)
@@ -36,7 +37,7 @@ const fetchAllPosts = () => {
               <p><i class="fa-regular fa-clock"></i>&nbsp;${id.posted_time}</p>
             </div>
             <div class="card-actions justify-end">
-              <button class="btn btn-primary rounded-full bg-green-600"><i class="fa-solid fa-envelope-open"></i></button>
+              <button onclick="addToTitleBox('${id.title}', '${id.view_count}')" class="btn btn-primary rounded-full bg-green-600"><i class="fa-solid fa-envelope-open"></i></button>
             </div>
           </div>
         </div>
@@ -47,5 +48,28 @@ const fetchAllPosts = () => {
        })
     })
     
+}
+
+//adds title into title box 
+function  addToTitleBox(id, view_count){
+    console.log(id, view_count)
+    const post = document.getElementById('id');
+    const newCard = document.createElement('div')
+    newCard.innerHTML = ` <div>
+    <div class="card w-full bg-white shadow-xl mt-4">
+      <div class="flex justify-between p-4 gap-4">
+        <h2 class="font-bold">${id}</h2>
+        <p><i class="fa-solid fa-eye"></i>&nbsp;  ${view_count}</p>
+      </div>
+    </div>
+  </div>
+  `
+
+  titleContainer.appendChild(newCard)
+
+  //update mark as read count when mark button is clicked
+  let count = parseInt(document.getElementById('mark-as-read').innerText);
+  document.getElementById('mark-as-read').innerText = count+1;
+
 }
 fetchAllPosts();
