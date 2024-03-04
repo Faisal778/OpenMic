@@ -2,6 +2,7 @@ console.log('script.js connected')
 
 const cardContainer = document.getElementById('card-container')
 const titleContainer = document.getElementById('title-div')
+const latestPostContainer = document.getElementById('latest-posts-container')
 // Show all posts in let's discuss section
 const fetchAllPosts = () => {
     const url = 'https://openapi.programming-hero.com/api/retro-forum/posts';
@@ -72,4 +73,41 @@ function  addToTitleBox(id, view_count){
   document.getElementById('mark-as-read').innerText = count+1;
 
 }
+
+const latestPosts =() =>{
+    const url = 'https://openapi.programming-hero.com/api/retro-forum/latest-posts';
+    fetch(url)
+    .then((res) => res.json())
+    .then((res) => {
+        res.forEach((id) => {
+         console.log(id)
+         const newCard = document.createElement('div')
+         newCard.innerHTML = `<div class=" w-full bg-base-100 shadow-xl rounded-2xl">
+         <figure><img class = "rounded-2xl" src="${id.cover_image}" alt="Shoes" /></figure>
+         <div class="card-body">
+             <p id = "publish-date"><i class="fa-regular fa-calendar"></i> ${id.author.posted_date ? id.author.posted_date : 'No publish date'}</p>
+           <h2 class="card-title"> ${id.title}</h2>
+           <p>${id.description} </p>
+             <div class="chat chat-start">
+                 <div class="chat-image avatar">
+                   <div class="w-10 rounded-full">
+                     <img alt="Tailwind CSS chat bubble component" src="${id.profile_image}" />
+                   </div>
+                 </div>
+                 <div class="chat-header text-md font-semibold">
+                     ${id.author.name}
+                 </div>
+                 <div class="">${id.author.designation ? id.author.designation : 'Unknown'}</div>
+               </div>
+         </div>
+       </div>`
+
+       latestPostContainer.appendChild(newCard)
+ })
+})
+
+}
+
+
 fetchAllPosts();
+latestPosts();
