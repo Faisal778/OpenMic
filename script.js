@@ -6,15 +6,17 @@ const latestPostContainer = document.getElementById('latest-posts-container')
 
 const online = document.getElementById("online-status");
 // Show all posts in let's discuss section
-const fetchAllPosts = () => {
-    const url = 'https://openapi.programming-hero.com/api/retro-forum/posts';
+const fetchAllPosts = (searchText = 'posts') => {
+    const url = `https://openapi.programming-hero.com/api/retro-forum/posts?category=${searchText}`;
     fetch(url)
     .then((res) => res.json())
     .then(({posts}) => {
+        cardContainer.textContent = ''
        posts.forEach((id) => {
-        console.log(id)
+  
+        
         const newCard = document.createElement('div')
-     
+        
       //  let online = document.getElementById('online-status');
       // mark online status as green or red
         let status= ''
@@ -63,10 +65,10 @@ const fetchAllPosts = () => {
 
         `
         
-       
         cardContainer.appendChild(newCard)
        })
-      
+      laodingSpinner(false);
+       
     })
     
 }
@@ -139,6 +141,24 @@ const latestPosts =() =>{
 }
 
 
+const search = () => {
+    laodingSpinner(true);
+    const searchField = document.getElementById('search-field')
+    const searchText = searchField.value;
+    fetchAllPosts(searchText);
 
-fetchAllPosts();
+}
+
+const laodingSpinner = (isLoading) =>{
+    const laodingSpinner= document.getElementById('spinner');
+    if (isLoading) {
+        laodingSpinner.classList.remove('hidden'); 
+        setTimeout(() => {
+            laodingSpinner.classList.add('hidden'); 
+        }, 3000);
+    } else {
+        laodingSpinner.classList.add('hidden'); 
+    }
+}
 latestPosts();
+
