@@ -1,4 +1,4 @@
-console.log('script.js connected')
+
 
 const cardContainer = document.getElementById('card-container')
 const titleContainer = document.getElementById('title-div')
@@ -6,7 +6,7 @@ const latestPostContainer = document.getElementById('latest-posts-container')
 
 const online = document.getElementById("online-status");
 // Show all posts in let's discuss section
-const fetchAllPosts = (searchText = 'posts') => {
+const fetchAllPosts = (...searchText) => {
     const url = `https://openapi.programming-hero.com/api/retro-forum/posts?category=${searchText}`;
     fetch(url)
     .then((res) => res.json())
@@ -21,10 +21,8 @@ const fetchAllPosts = (searchText = 'posts') => {
       // mark online status as green or red
         let status= ''
         if (id.isActive) {
-         console.log('here')
          status = `bg-green-400`
         } else {
-         console.log('here')
          status = `bg-red-400`
         }
        
@@ -76,15 +74,12 @@ const fetchAllPosts = (searchText = 'posts') => {
 
 //adds title into title box 
 function  addToTitleBox(id, view_count){
-    console.log(id, view_count)
+
     const post = document.getElementById('id');
     const newCard = document.createElement('div');
 
-    let markButton = document.getElementById('mark-button')
-    markButton.classList.add("bg-green-400");
-
     newCard.innerHTML = ` <div>
-    <div class="card w-full bg-white shadow-xl mt-4">
+    <div class="card w-full bg-gray-50 text-gray-600 shadow-xl mt-4">
       <div class="flex justify-between p-4 gap-4">
         <h2 class="font-bold">${id}</h2>
         <p><i class="fa-solid fa-eye"></i>&nbsp;  ${view_count}</p>
@@ -112,7 +107,7 @@ const latestPosts =() =>{
     .then((res) => res.json())
     .then((res) => {
         res.forEach((id) => {
-         console.log(id)
+
          const newCard = document.createElement('div')
          newCard.innerHTML = `<div class=" w-full bg-base-100 shadow-xl rounded-2xl">
          <figure><img class = "rounded-2xl" src="${id.cover_image}" alt="Shoes" /></figure>
@@ -139,7 +134,7 @@ const latestPosts =() =>{
 })
 
 }
-
+fetchAllPosts();
 
 const search = () => {
     laodingSpinner(true);
