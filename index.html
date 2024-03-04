@@ -9,8 +9,46 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- font awesome link  -->
+    <script src="https://kit.fontawesome.com/9f498ab34e.js" crossorigin="anonymous"></script>
+
     <!-- js script  -->
     <script src="script.js"></script>
   </head>
-  <body></body>
+  <body>
+    <header class="max-w-[90%] mx-auto">
+      <!-- navbar section start  -->
+      <section class="my-4">
+        <div class="navbar bg-base-100">
+          <div class="navbar-start">
+            <div class="dropdown">
+              <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
+                </svg>
+              </div>
+              <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-[300px] gap-2">
+                <a class="btn rounded-full"><i class="fa-solid fa-house"></i>Home</a>
+                <a class="btn rounded-full"><i class="fa-solid fa-pen"></i>Tooltip</a>
+                <a class="btn rounded-full"><i class="fa-solid fa-user-plus"></i>Add User</a>
+                <a class="btn rounded-full"><i class="fa-solid fa-flag"></i>Bookmark</a>
+              </ul>
+            </div>
+            <a class="btn btn-ghost text-xl font-bold">Open Mic</a>
+          </div>
+
+          <div class="navbar-end gap-2">
+            <div class="hidden lg:flex gap-2">
+              <a class="btn btn-sm rounded-full tooltip tooltip-top flex items-center" data-tip="Home"><i class="fa-solid fa-house"></i></a>
+              <a class="btn btn-sm rounded-full tooltip tooltip-top flex items-center" data-tip="Tooltip"><i class="fa-solid fa-pen"></i></a>
+              <a class="btn btn-sm rounded-full tooltip tooltip-top flex items-center" data-tip="Add User"><i class="fa-solid fa-user-plus"></i></a>
+              <a class="btn btn-sm rounded-full tooltip tooltip-top flex items-center" data-tip="Bookmark"><i class="fa-solid fa-flag"></i></a>
+            </div>
+            <a class="btn btn-sm rounded-full bg-blue-500 text-white">Sign in</a>
+          </div>
+        </div>
+      </section>
+      <!-- navbar section end  -->
+    </header>
+  </body>
 </html>
